@@ -1,0 +1,22 @@
+#!/usr/bin/expect -f
+  
+set HOST [lindex $argv 0]
+set USER [lindex $argv 1]
+set PASS [lindex $argv 2]
+set CMD [lindex $argv 3]
+set timeout -1
+  
+spawn ssh -o StrictHostKeyChecking=no $USER@$HOST
+match_max 1000
+  
+#若出現要輸入password
+expect "*?assword:*"
+#則輸入$PASS變數的字串，\r表示<Enter>鍵
+send -- "$PASS\r"
+send -- "\r"
+  
+expect "#"
+send -- "$CMD\r"
+expect eof
+  
+  
