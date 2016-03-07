@@ -23,9 +23,9 @@
     $command = './chkpasswd ' . $_POST["username"] . ' ' . ($_POST["passwd"]);
     $check = shell_exec ($command);
     if ($check == $yes) {
-      $DB_Login = "SELECT * FROM `member` WHERE `member_name`='".$_POST["username"]."'";
-      $Login = mysql_query($DB_Login);
-      $DB_data = mysql_fetch_assoc($Login);
+      $DB_find = "SELECT * FROM `member` WHERE `member_name`='".$_POST["username"]."'";
+      $find = mysql_query($DB_find);
+      $DB_data = mysql_fetch_assoc($find);
       $_SESSION["memberlevel"] = $DB_data["member_level"];
       $_SESSION["loginmenber"] = $_POST["username"];
       if(isset($_POST["rememberme"]) && $_POST["rememberme"]=="true" ) {
