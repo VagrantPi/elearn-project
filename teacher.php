@@ -7,7 +7,7 @@
   }
 
   if(!isset($_SESSION["memberlevel"]) || ($_SESSION["memberlevel"]=="")) {
-    Header("location:index.php");
+    iHeader("location:index.php");
   }
 
   if(!isset($_SESSION["loginmenber"]) || ($_SESSION["loginmenber"]=="")) {
@@ -70,6 +70,7 @@
     <div class="w3-col m2 w3-light-grey w3-xlarge">
       <p><a class="w3-btn w3-theme-dark" style="font-weight:900;" href="index.php?logout=true">Log out</a></p>
       <input class="w3-btn w3-teal" type=button onclick="window.open('<?php echo "http://ws.csie.nptu.edu.tw:3000/wetty/ssh/" . $_SESSION["loginmenber"]?>');" value="開啟WebTTY"><p>
+      <p><a class="w3-btn w3-theme-dark" style="font-weight:900;" href="teacher.php?CourseManage=true">課程管理</a></p>
       <!--<span class="w3-opennav w3-btn w3-teal" onclick="w3_open()">&#9776;教學</span>-->
     </div>
 
@@ -83,7 +84,15 @@
         <iframe src="C++Tutorial.php" width="100%" height="100%" frameborder="0" scrolling="yes"></iframe>
     <?php
       }else {*/
+    ?> 
+    <?php
+      if(isset($_GET["CourseManage"]) && ($_GET["CourseManage"]=="true")){
     ?>
+        <iframe src="CourseManage.php" width="100%" height="100%" frameborder="0" scrolling="yes"></iframe>
+    <?php
+      } else {
+    ?> 
+
       <h1>Welcome</h1>
       <p class="w3-justify">test.</p>
       <hr>
@@ -92,7 +101,7 @@
       <p>Lorem ipsum...</p>
 
     <?php
-    //}
+    }
     ?>
     </div>
 
